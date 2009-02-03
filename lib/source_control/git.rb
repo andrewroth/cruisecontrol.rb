@@ -24,6 +24,8 @@ module SourceControl
       # need to read from command output, because otherwise tests break
       git('clone', [@repository, path], :execute_in_project_directory => false)
 
+      git('submodule', ["update", "--init"])
+
       if @branch
         git('branch', ['--track', @branch, "origin/#@branch"])
         git('checkout', ['-q', @branch]) # git prints 'Switched to branch "branch"' to stderr unless you pass -q 
