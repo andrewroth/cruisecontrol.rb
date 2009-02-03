@@ -34,7 +34,7 @@ Configuration.dashboard_url = 'http://cruise.rubaidh.com/'
 
 # To delete build when there are more than a certain number present, uncomment this line - it will make the dashboard
 # perform better
-# BuildReaper.number_of_builds_to_keep = 20
+BuildReaper.number_of_builds_to_keep = 20
 
 # any files that you'd like to override in cruise, keep in ~/.cruise, and copy over when this file is loaded like this
 site_css = CRUISE_DATA_ROOT + "/site.css"
