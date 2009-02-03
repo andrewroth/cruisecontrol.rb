@@ -8,3 +8,15 @@ role :db,  "ardbeg.rubaidh.com", :primary => true
 set :deploy_to, "/var/www/apps/cruise"
 set :user, "cruise"
 set :scm, :git
+set :use_sudo, false
+
+namespace :deploy do
+  task :restart, :roles => :app, :except => { :no_release => true } do
+    run "touch #{current_path}/tmp/restart.txt"
+  end
+
+  [:start, :stop].each do |t|
+    desc "#{t} task is not applicable to Passenger"
+    task t, :roles => :app do ; end
+  end
+end
