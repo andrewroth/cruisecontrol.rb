@@ -50,6 +50,8 @@ module SourceControl
       else
         git("reset", ["--hard"])
       end
+
+      git('submodule', ["update", "--init"])
     end
 
     def up_to_date?(reasons = [])
