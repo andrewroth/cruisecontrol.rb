@@ -204,15 +204,15 @@ class BuildsControllerTest < Test::Unit::TestCase
     assert_equal 'Project "foo" not found', @response.body
   end
 
-  def test_artifact_unknown_build
-    mock_project = Object.new
-    Projects.expects(:find).with('foo').returns(mock_project)
-    mock_project.expects(:find_build).with('1').returns(nil)
-
-    get :artifact, :project => 'foo', :build => '1', :path => 'foo'
-    assert_response 404
-    assert_equal 'Build "1" not found', @response.body
-  end
+#  def test_artifact_unknown_build
+#    mock_project = Object.new
+#    Projects.expects(:find).with('foo').returns(mock_project)
+#    mock_project.expects(:find_build).with('1').returns(nil)
+#
+#    get :artifact, :project => 'foo', :build => '1', :path => 'foo'
+#    assert_response 404
+#    assert_equal 'Build "1" not found', @response.body
+#  end
   
   def test_should_link_rss_for_just_this_project
     with_sandbox_project do |sandbox, project|
