@@ -33,7 +33,7 @@ class ProjectsControllerTest < Test::Unit::TestCase
     post :index, :format => 'js'
 
     assert_response :success
-    assert_template 'index_js'
+    assert_template 'index'
     assert_equal %w(one two), assigns(:projects).map { |p| p.name }
   end
 
@@ -45,7 +45,7 @@ class ProjectsControllerTest < Test::Unit::TestCase
     post :index, :format => 'rss'
 
     assert_response :success
-    assert_template 'index_rss'
+    assert_template 'index'
     assert_equal %w(one two), assigns(:projects).map { |p| p.name }
 
     xml = REXML::Document.new(@response.body)
@@ -70,7 +70,7 @@ class ProjectsControllerTest < Test::Unit::TestCase
     Projects.expects(:find).with('one').returns(create_project_stub('one', 'success', [create_build_stub('10', 'success')]))
     get :show, :id => 'one', :format => 'rss'
     assert_response :success
-    assert_template 'show_rss'
+    assert_template 'show'
     
     xml = REXML::Document.new(@response.body)
     assert_equal "one build 10 success", REXML::XPath.first(xml, '/rss/channel/item[1]/title').text
@@ -111,7 +111,7 @@ class ProjectsControllerTest < Test::Unit::TestCase
     get :index, :format => 'cctray'
 
     assert_response :success
-    assert_template 'index_cctray'
+    assert_template 'index'
     assert_equal %w(one two), assigns(:projects).map { |p| p.name }
     
     xml = REXML::Document.new(@response.body)
@@ -229,6 +229,22 @@ class ProjectsControllerTest < Test::Unit::TestCase
     
     assert_response 403
     assert_equal 'Build requests are not allowed', @response.body
+  end
+
+  def test_statistics
+    in_sandbox do |sandbox|
+      project = Project.new('four')
+      project.path = sandbox.root
+      content = File.open("#{RAILS_ROOT}/test/fixtures/four.svg"){|f| f.read }
+      sandbox.new :file => 'public/images/charts/four.svg', :with_contents => content       
+      
+      Projects.expects(:find).returns(project)
+    
+      get :statistics, :id => 'four'  
+      
+      assert_response :success
+      assert_match /src="\/images\/charts\/four.svg"/, @response.body
+    end
   end
 
   def stub_change_set_parser

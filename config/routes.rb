@@ -2,7 +2,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.home '', Configuration.default_page
   
-  map.resources :projects
+  map.resources :projects, :collection => {:statistics => :get}
   
   map.builds_drop_down 'builds/older/:project', :controller => 'builds', :action => 'drop_down'
   map.project_without_builds 'builds/:project', :controller => 'builds', :action => 'show'

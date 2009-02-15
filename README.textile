@@ -1,0 +1,24 @@
+h1. CruiseControl.rb
+
+h2. What's this?
+
+  CruiseControl.rb is a continuous integration tool. Its basic purpose in life is to alert members of a software project
+  when one of them checks into a source control system something that breaks the build.
+
+  CC.rb is easy to install, pleasant to use and simple to hack. It's written in Ruby.
+
+  "Download the latest release":http://rubyforge.org/frs/?group_id=2918
+  "Project web site":http://cruisecontrolrb.thoughtworks.com
+  "Project RubyForge site (for developers)":http://rubyforge.org/projects/cruisecontrolrb/
+
+h3. License:
+
+  Apache Software License 2.0
+  (C) ThoughtWorks 2007
+
+h2. What's within this fork?
+
+  Updated to Rails 2.1.2
+  Updated plugins
+  Added action_mailer_tls and meta_tags plugin
+  Added statistics from "O'Reilly Ruby":http://www.oreillynet.com/ruby/blog/2008/03/cruisecontrol_charts.html 

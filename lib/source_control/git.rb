@@ -12,7 +12,6 @@ module SourceControl
       @repository = options.delete(:repository)
       @branch = options.delete(:branch)
       @watch_for_changes_in = options.delete(:watch_for_changes_in)
-      @include_submodules = true
       raise "don't know how to handle '#{options.keys.first}'" if options.length > 0
     end
 
@@ -30,11 +29,6 @@ module SourceControl
         git('checkout', ['-q', @branch]) # git prints 'Switched to branch "branch"' to stderr unless you pass -q 
       end
       git("reset", ['--hard', revision.number]) if revision
-
-      if @include_submodules
-      	git("submodule",["init"])
-        git("submodule",["update"])
-      end
     end
 
     # TODO implement clean_checkout as "git clean -d" - much faster
@@ -53,9 +47,6 @@ module SourceControl
         git("reset", ["--hard", revision.number])
       else
         git("reset", ["--hard"])
-      end
-      if @include_submodules
-        git("submodule",["update"])
       end
     end
 

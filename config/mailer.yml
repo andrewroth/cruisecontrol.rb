@@ -1,0 +1,7 @@
+---   
+  :address: mail.dconr.org
+  :port: 25
+  :domain: dconr.org
+  :user_name: admin@dconr.org
+  :password: herein
+  :authentication: :plain

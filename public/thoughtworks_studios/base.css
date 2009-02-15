@@ -1,7 +1,7 @@
 body {
     background-color: #d3cdca;
     /* because of gradient and body image used for #bd.thick */
-    /* background-image: url("../images/background.gif"); */
+    /* background-image: url("../images/background.png"); */
     background-position: top left;
     background-repeat: repeat-x;
     padding-top: 8px;
@@ -48,7 +48,7 @@ label {
 }
 
 .button {
-		background: url("../images/arrow_right.gif") no-repeat;
+		background: url("../images/arrow_right.png") no-repeat;
 		background-position: 5px 50%;
 		padding-left: 12px;
 		text-transform: lowercase;
@@ -86,7 +86,7 @@ label {
 	margin: 0;
 }
 .box li, .list li {
-	background: url("../images/arrow_right.gif") no-repeat;
+	background: url("../images/arrow_right.png") no-repeat;
 		background-position: 5px 50%;
 		padding-left: 12px;
 	padding-bottom: 2px;
@@ -101,7 +101,7 @@ label {
 .section {
 	border: 1px solid #C0C0C0;
 	padding: 7px;
-	/* background: url("../images/curve.gif") top left no-repeat; */
+	/* background: url("../images/curve.png") top left no-repeat; */
 }
 	
 	
@@ -176,7 +176,7 @@ label {
 }
 	
 #hd #thoughtworks-logo {
-		background: url("../images/arrow_left.gif") no-repeat;
+		background: url("../images/arrow_left.png") no-repeat;
 		background-position: 0% 70%;
 		padding-left: 8px;
     float: left;
@@ -196,7 +196,7 @@ label {
 	padding-bottom: 19px;
 }
 #bd.thick {
-	background-image: url("../images/body_bg_thick.gif");
+	background-image: url("../images/body_bg_thick.png");
 	background-repeat: repeat-y;
 	background-position: top left;
 }
@@ -204,7 +204,7 @@ label {
 	border: 1px solid #C0C0C0;
 	margin: 0 10px;
 	padding: 10px 5px;
-	background: url("../images/body_bg.gif") repeat-y;
+	background: url("../images/body_bg.png") repeat-y;
 	background-position: top left;
 }
 
@@ -328,16 +328,16 @@ p#panel-intro {
 	background-position: center left;
 }
 .blog .links a.permalink {
-	background-image: url("../images/permlink.gif");
+	background-image: url("../images/permlink.png");
 }
 .blog .links a.sendfriend {
-	background-image: url("../images/sendfriend.gif");
+	background-image: url("../images/sendfriend.png");
 }
 .blog .links a.trackback {
-	background-image: url("../images/trackback.gif");
+	background-image: url("../images/trackback.png");
 }
 .blog .links a.rss {
-	background-image: url("../images/rss.gif");
+	background-image: url("../images/rss.png");
 }
 .blog .commentator {
 		background: #f1f0ec;
@@ -412,7 +412,7 @@ h2 {
 		/*color: #E65414;*/
 		color: #f28218;
 		font-weight: bold;
-		background: url("../images/hdbg.gif") top left repeat;
+		background: url("../images/hdbg.png") top left repeat;
 		padding: 4px;
 		margin-bottom: 10px;
 }
@@ -436,13 +436,13 @@ h2.with-links a {
 	font-size: 85%;
 }
 h2.with-links a.rss {
-	background-image: url("../images/rss.gif");
+	background-image: url("../images/rss.png");
 }
 h1 {
 	clear: both;
 	font-size: 130%;
 	color: white;
-	background: #a2c8ff url("../images/hdbg_grad.gif") top left repeat-y;
+	background: #a2c8ff url("../images/hdbg_grad.png") top left repeat-y;
 	padding: 4px;
 	margin-bottom: 10px;
 	font-weight: normal;
@@ -463,7 +463,7 @@ h1 strong {
 
 a.read-more,
 a.strong-link {
-	background: url("../images/arrow_right.gif") no-repeat;
+	background: url("../images/arrow_right.png") no-repeat;
 	background-position: 5px 50%;
 	padding-left: 12px;
 	text-transform: lowercase;
@@ -528,10 +528,10 @@ a.read-more:hover, a.strong-link:hover {
 
 #tws {
 	margin-top: 7px;
-	background: url("../images/twos_bg_top.gif") top left no-repeat;
+	background: url("../images/twos_bg_top.png") top left no-repeat;
 }
 #tws p {
-	background: url("../images/tws_bg_bottom.gif") bottom left no-repeat;
+	background: url("../images/tws_bg_bottom.png") bottom left no-repeat;
 }
 #tws img {
 	margin: 14px 0 3px 30px;
@@ -551,7 +551,7 @@ a.read-more:hover, a.strong-link:hover {
 }
 #kit {
 	padding-top: 94px;
-	background: url("../images/kit_bg_top.gif") top left no-repeat;
+	background: url("../images/kit_bg_top.png") top left no-repeat;
 	text-align: center;
 }
 /* not currently used because image doesn't overlay well */
@@ -559,7 +559,7 @@ a.read-more:hover, a.strong-link:hover {
 	margin: 14px 0 3px 30px;
 }
 #kit .inside {
-	background: url("../images/kit_bg_bottom.gif") bottom left no-repeat;
+	background: url("../images/kit_bg_bottom.png") bottom left no-repeat;
 	padding-bottom: 6px;
 }
 #kit form {

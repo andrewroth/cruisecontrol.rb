@@ -1,0 +1,8 @@
+user: root
+group: root
+cwd: /srv/www/htdocs/ccrb/current/
+log_file: /srv/www/htdocs/ccrb/shared/log/mongrel.log
+port: "6000"
+environment: production
+pid_file: /srv/www/htdocs/ccrb/shared/pids/mongrel.pid
+servers: 2

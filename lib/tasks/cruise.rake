@@ -1,5 +1,7 @@
 desc 'Continuous build target'
 task :cruise do
+  system "geminstaller"
+  
   out = ENV['CC_BUILD_ARTIFACTS']
   mkdir_p out unless File.directory? out if out
 
@@ -12,4 +14,5 @@ task :cruise do
   mv 'coverage/functionals', "#{out}/functional test coverage" if out
   
   Rake::Task["test:integration"].invoke
+  #mv 'public/images/charts', "#{out}/charts" if out
 end

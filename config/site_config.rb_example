@@ -10,6 +10,13 @@
 # framework. Obviously, ActionMailer needs to know how to send out email messages. 
 # If you have an SMTP server on your network, and it needs no authentication, write this in your site_config.rb:
 # 
+#
+#require "smtp_tls"
+#
+#mailer_config = File.open("#{RAILS_ROOT}/config/mailer.yml") 
+#mailer_options = YAML.load(mailer_config) 
+#ActionMailer::Base.smtp_settings = mailer_options 
+#
 # ActionMailer::Base.smtp_settings = {
 #   :address =>        "yoursmtpserver",
 #   :domain =>         "yourdomain.com",

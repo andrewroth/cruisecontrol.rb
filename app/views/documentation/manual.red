@@ -275,6 +275,7 @@ CC.rb supports clean checkouts, though they are not the default.  To enable them
 you may also pass <code>:always</code> into do_clean_checkout, or any other time such as <code>2.days, 30.minutes,</code> etc.
 
 
+
 h1. Troubleshooting and support
 
 Beware, at the time of this writing, CC.rb is quite young and may have some heinous bugs (although we do have several 

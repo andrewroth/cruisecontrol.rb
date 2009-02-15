@@ -33,6 +33,8 @@ h1. Feature list
 
 * Infinitely hackable thanks to publicly available source code and Ruby open classes.
 
+* Progress chart for each project showing the project's progress based on <i>CodeStatistics</i>.
+
 * Free as in "free beer".
 
 h1. Demo site

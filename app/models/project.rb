@@ -1,4 +1,5 @@
 require 'fileutils'
+require 'gnuplot'
 
 class Project
   @@plugin_names = []
@@ -243,7 +244,7 @@ class Project
     if builder_state_and_activity == 'builder_down'
       BuilderStarter.begin_builder(name)
       10.times do
-        sleep 1.second
+        sleep 1.second.to_i
         break if builder_state_and_activity != 'builder_down' 
       end
     end
@@ -326,7 +327,7 @@ class Project
 
     build
   end
-
+  
   def notify(event, *event_parameters)
     errors = []
     results = @plugins.collect do |plugin| 
@@ -520,7 +521,6 @@ def plugin_loader.load_all
       # TODO: find out what happens with symlinks on a Linux here? how about broken symlinks?
     end
   end
-
 end
 
 plugin_loader.load_all

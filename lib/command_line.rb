@@ -210,5 +210,4 @@ module CommandLine
     end
   end
   module_function :format_for_printing
-  
 end

@@ -1,4 +1,5 @@
 require 'fileutils'
+require 'gnuplot'
 
 class Projects
 
@@ -17,6 +18,15 @@ class Projects
     def load_project(dir)
       project = Project.read(dir, load_config = false)
       project.path = dir
+      project
+    end
+   
+    def add_project(project_name, scm_options)
+      source_control = SourceControl.create(scm_options)
+      
+      project = Project.new(project_name, source_control)
+      projects = Projects.load_all
+      projects << project
       project
     end
   end
@@ -70,5 +80,4 @@ class Projects
   def method_missing(method, *args, &block)
     @list.send(method, *args, &block)
   end
-
 end

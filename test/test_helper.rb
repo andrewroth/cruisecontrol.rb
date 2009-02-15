@@ -13,7 +13,6 @@ require 'action_controller/test_process'
 require 'action_controller/integration'
 require 'breakpoint'
 require 'mocha'
-require 'stubba'
 
 $LOAD_PATH << File.dirname(__FILE__)
 require 'file_sandbox'

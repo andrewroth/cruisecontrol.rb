@@ -11,7 +11,7 @@
 # form the root of the application path.
 
 set :application, "CruiseControl.rb"
-set :repository, "svn://rubyforge.org/var/svn/cruisecontrolrb/trunk"
+set :repository, "git://github.com:kosmas58/cruisecontrol.rb.git""
 
 # =============================================================================
 # ROLES
@@ -31,12 +31,19 @@ role :web, "localhost"
 # OPTIONAL VARIABLES
 # =============================================================================
 # set :deploy_to, "/path/to/deployment" # defaults to "/u/apps/#{application}"
+# set :deploy_via, :export
+# set :rails_env, "production"
 # set :user, "flippy"            # defaults to the currently logged in user
-# set :scm, :darcs               # defaults to :subversion
+# set :scm, : "git"              # defaults to :subversion
 # set :svn, "/path/to/svn"       # defaults to searching the PATH
 # set :darcs, "/path/to/darcs"   # defaults to searching the PATH
 # set :cvs, "/path/to/cvs"       # defaults to searching the PATH
 # set :gateway, "gate.host.com"  # default to no gateway
+# set :spinner_user, nil
+# set :use_sudo, false
+# set(:password) do
+#   Capistrano::CLI.ui.ask "Please enter 'password': "
+# end
 
 # =============================================================================
 # SSH OPTIONS
@@ -75,5 +82,104 @@ role :web, "localhost"
 #   it will be treated as the contents of the template to render. Any other keys
 #   are treated as local variables, which are made available to the (ERb)
 #   template.
+
+# ================================================================
+# TEMPLATE TASKS
+# ================================================================
+
+        # allocate a pty by default as some systems have problems without
+        default_run_options[:pty] = true
+      
+        # set Net::SSH ssh options through normal variables
+        # at the moment only one SSH key is supported as arrays are not
+        # parsed correctly by Webistrano::Deployer.type_cast (they end up as strings)
+        [:ssh_port, :ssh_keys].each do |ssh_opt|
+          if exists? ssh_opt
+            logger.important("SSH options: setting #{ssh_opt} to: #{fetch(ssh_opt)}")
+            ssh_options[ssh_opt.to_s.gsub(/ssh_/, '').to_sym] = fetch(ssh_opt)
+          end
+        end
+      
+         namespace :deploy do
+           task :restart, :roles => :app, :except => { :no_release => true } do
+             # do nothing
+           end
+
+           task :start, :roles => :app, :except => { :no_release => true } do
+             # do nothing
+           end
+
+           task :stop, :roles => :app, :except => { :no_release => true } do
+             # do nothing
+           end
+         end
+
+
+# ================================================================
+# CUSTOM RECIPES
+# ================================================================
+
+  namespace :deploy do
+    desc "Update symlink for projects directory"
+    task:after_update_code do
+      sudo "chmod -R 775 #{release_path}/tmp"
+      sudo "chmod -R 775 #{release_path}/log"
+      sudo "chmod ugo+x #{release_path}/cruise"     
+      sudo "rm -rf #{release_path}/public/images/charts"
+      sudo "mkdir -p #{shared_path}/charts"
+      sudo "ln -nfs #{shared_path}/charts #{release_path}/public/images/charts"
+      sudo "rm -rf #{release_path}/projects"
+      sudo "mkdir -p #{shared_path}/projects"
+      sudo "chmod -R 775 #{shared_path}/projects"
+      #sudo "chown deployer #{shared_path}/projects"
+      #sudo "chgrp rails #{shared_path}/projects"
+      sudo "ln -nfs #{shared_path}/projects #{release_path}/projects"
+      sudo "touch #{shared_path}/mongrel_cluster.yml"
+      sudo "cp -f #{shared_path}/mongrel_cluster.yml #{release_path}/config/mongrel_cluster.yml"
+      sudo "touch #{shared_path}/mailer.yml"
+      sudo "cp -f #{shared_path}/mailer.yml #{release_path}/config/mailer.yml"
+      sudo "touch #{shared_path}/site_config.rb"
+      sudo "cp -f #{shared_path}/site_config.rb #{release_path}/config/site_config.rb"
+   end
+end
+
+#after 'deploy:update_code', 'deploy:after_update_code'
+
+  namespace :app do
+  desc "A task which restarts the mongrel cluster." 
+  task :restart_mongrel_cluster, :roles => :app do    
+    sudo "monit -g mongrel restart all"  
+  end
+end
+
+after 'app:copy_config_files', 'app:restart_mongrel_cluster'
+
+  namespace :deploy do
+    desc "stop CC.rb"
+    task :stop_ccrb do
+      sudo "monit -g mongrel stop all" rescue nil
+      sudo "rcmonit stop" rescue nil
+  end
+end
+before 'deploy:update_code', 'deploy:stop_ccrb'
+
+  namespace :deploy do
+    desc "start CC.rb"
+    task :start_ccrb do
+      sudo "rcmonit start" rescue nil
+    end
+end
+
+after 'deploy:symlink', 'deploy:start_ccrb'
+
+  namespace :deploy do
+  desc "Run GemInstaller to install needed gems."
+  task :update_gem do   
+    run "gem sources -u && geminstaller -e -c  #{release_path}/config/geminstaller.yml"
+  end
+end
+
+after 'deploy:update_code', 'deploy:update_gem'
+
 
 require File.dirname(__FILE__) + "/recipes/cruisecontrol.rb"

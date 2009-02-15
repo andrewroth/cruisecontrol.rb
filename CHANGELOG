@@ -1,3 +1,13 @@
+* 1.3.6
+  -  [patch] updated to Rails 2.1.2
+  -  [patch] updated plugins
+  -  [patch] added action_mailer_tls and meta_tags plugin
+  -  [patch] added create statistics plot from 'rake stats'
+  -  [bug to fix] generates '%2Findex.html' instead of '/index.html' in builds_controller.rb line 42ff.. 
+  -  [bug to fix] render_plugin_doc does not work under rails 2.1.2 and RedCloth 4.1.1. 
+  
+------------------------------------------------------------------------------------------------------------------------
+
 TRUNK
 - support for Git and Mercurial (distributed source control systems) [Ben Burkert, Brett Adam, Biju Philip Chacko, Chris Johnston]
 - 'cruise add' command:

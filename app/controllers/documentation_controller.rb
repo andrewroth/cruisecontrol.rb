@@ -1,5 +1,5 @@
 class DocumentationController < ApplicationController
-  layout nil
+  layout "documentation"
   caches_page :get
 
   def get
@@ -18,7 +18,7 @@ class DocumentationController < ApplicationController
   
   def plugins
     if params.has_key? :name
-      @plugin_title = Inflector.titleize(params[:name].sub(/\.rb$/, ''))
+      @plugin_title = ActiveSupport::Inflector.titleize(params[:name].sub(/\.rb$/, ''))
       case params[:type]
       when 'builtin'
         @file = File.join(RAILS_ROOT, 'lib', 'builder_plugins', params[:name])

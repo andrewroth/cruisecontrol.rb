@@ -9,6 +9,7 @@ h2. Documentation
 * "FAQ":/documentation/faq
 * "Troubleshooting Guide":/documentation/troubleshooting
 * "Plugins":/documentation/plugins
+* "Statistics":/documentation/statistician
 * "Screencasts":/documentation/screencasts
 
 </div>

@@ -18,5 +18,18 @@ Project.configure do |project|
 
   # Ping Subversion for new revisions every 5 minutes (default: 30 seconds)
   # project.scheduler.polling_interval = 5.minutes
-
+  
+  # Set filters for the statiscian plugin# Set filters for the statiscian plugin
+  project.statistician.test_filter = ["Model specs",
+                                      "View specs",
+                                      "Controller specs",
+                                      "Helper specs",
+                                      "Library specs",
+                                      "Unit tests", 
+                                      "Functional tests", 
+						                          "Integration tests"]    
+  project.statistician.code_filter = ["Libraries", 
+                                      "Helpers",
+                                      "Controllers",
+                                      "Models"]
 end

@@ -11,9 +11,9 @@ class ProjectsController < ApplicationController
     
     respond_to do |format|
       format.html
-      format.js { render :action => 'index_js' }
-      format.rss { render :action => 'index_rss', :layout => false }
-      format.cctray { render :action => 'index_cctray', :layout => false }
+      format.js { render :action => 'index' }
+      format.rss { render :action => 'index', :layout => false }
+      format.cctray { render :action => 'index', :layout => false }
     end
   end
 
@@ -23,7 +23,7 @@ class ProjectsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to :controller => "builds", :action => "show", :project => @project }
-      format.rss { render :action => 'show_rss', :layout => false }
+      format.rss { render :action => 'show', :layout => false }
     end
   end
 
@@ -36,7 +36,7 @@ class ProjectsController < ApplicationController
     @project.request_build rescue nil
     @projects = Projects.load_all
 
-    render :action => 'index_js'
+    render :action => 'index', :format => :js
   end
   
   def code
@@ -54,5 +54,17 @@ class ProjectsController < ApplicationController
       render_not_found
     end
   end
+  
+  def statistics
+    @project = Projects.find(params[:id])
+    name = @project.name
+    render :layout => true,
+           :inline => %(
+              <embed src="/images/charts/#{name}.svg" 
+              type='image/svg+xml' width='100%' height='400'
+              style='background: url(/images/big_top_gradient.png);' />
+      )
+  end
+
 
 end

@@ -1,5 +1,5 @@
 require 'date'
-require 'xml_simple'
+require 'xmlsimple'
 
 module SourceControl
   class Subversion

@@ -1,28 +1,36 @@
-# $Id: redcloth_template_test.rb 22 2007-01-19 20:01:39Z toupeira $
+# $Id: redcloth_template_test.rb 39 2008-07-24 20:30:11Z toupeira $
 
 require 'test/unit'
 require 'rubygems'
-require 'active_support'
 require 'action_controller'
-require 'action_view'
+require 'action_controller/test_process'
 
 require 'init.rb'
 
-class RedClothTemplate < Test::Unit::TestCase
-  def render(input, local_assigns={})
-    template = RedCloth::Template.new(ActionView::Base.new)
-    template.render(input, local_assigns)
+class TestController < ActionController::Base
+  def show
+    @title = 'hello'
+    render :template => "#{params[:id]}.red", :layout => false
   end
+end
 
-  def test_erb
-    assert_equal "<p>2</p>", render("<%= 1 + 1 %>")
+TestController.view_paths = [ File.dirname(__FILE__) + '/fixtures/' ]
+ActionController::Routing::Routes.reload rescue nil
+
+class RedClothTemplateTest < Test::Unit::TestCase
+  def setup
+    @request    = ActionController::TestRequest.new
+    @response   = ActionController::TestResponse.new
+    @controller = TestController.new
   end
 
   def test_textile
-    assert_equal "<h1>title</h1>", render("h1. <%= 'title' %>")
+    get :show, :id => 'textile'
+    assert_equal "<h1>hello</h1>", @response.body
   end
 
-  def test_markdown
-    assert_equal "<h1>title</h1>", render("<%= 'title' %>\n=====")
+  def test_erb
+    get :show, :id => 'erb'
+    assert_equal "<p>2</p>", @response.body
   end
 end

@@ -12,7 +12,7 @@ class DocumentationControllerTest < Test::Unit::TestCase
   end
 
   def test_documentation
-    get :get, :path => []
+    get :get, :path => 'index'
     assert_response :success
     
     get :get, :path => 'docs'

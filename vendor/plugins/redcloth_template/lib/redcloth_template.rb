@@ -1,19 +1,11 @@
-# $Id: redcloth_template.rb 7 2006-12-22 15:59:44Z toupeira $
+# $Id: redcloth_template.rb 39 2008-07-24 20:30:11Z toupeira $
 
 require 'redcloth'
 
-class RedCloth
-  def hard_breaks
-    false
-  end
-  class Template
-    def initialize(view)
-      @view = view
-    end
-
-    def render(template, local_assigns)
-      output = @view.compile_and_render_template('rhtml', template, nil, local_assigns)
-      RedCloth.new(output).to_html
+module RedCloth
+  class Template < ActionView::TemplateHandlers::ERB
+    def render(template)
+      RedCloth.new(super).to_html
     end
   end
 end

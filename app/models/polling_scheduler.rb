@@ -15,7 +15,7 @@ class PollingScheduler
         throw :reload_project if @project.config_modified?
       rescue => e
         log_error(e) unless (same_error_as_before(e) and last_logged_less_than_an_hour_ago)
-        sleep(Configuration.sleep_after_build_loop_error)
+        sleep (Configuration.sleep_after_build_loop_error).to_i
       end
     end
   end
@@ -24,7 +24,7 @@ class PollingScheduler
     time_to_go = Time.now + polling_interval
     while Time.now < time_to_go
       @project.build_if_requested
-      sleep build_request_checking_interval
+      sleep build_request_checking_interval.to_i
     end
   end
 
