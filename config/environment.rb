@@ -35,7 +35,6 @@ Rails::Initializer.run do |config|
       def self.instantiate_observers; end
     end
   end
-
   
   # Skip frameworks you're not going to use (only works if using vendor/rails)
   config.frameworks -= [ :active_record, :action_web_service ]

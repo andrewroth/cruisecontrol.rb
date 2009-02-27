@@ -1,3 +1,4 @@
+---
 - name: rails
   # This is an example of using an optional environment variable to override the version
   #  of Rails that is used, without having to modify any code or config files.
