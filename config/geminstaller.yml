@@ -5,7 +5,7 @@ defaults: # defaults apply to all gems in the 'gems:' section, but can be overri
   # install_options: --include-dependencies
 gems:
 - name: capistrano
-  version: >= 2.5.4
+  version: >= 2.5.5
 - name: geminstaller
   version: >= 0.5.1
 - name: gnuplot
@@ -19,7 +19,7 @@ gems:
 - name: RedCloth
   version: >= 4.1.9
 - name: rubyforge
-  version: >= 1.0.2
+  version: >= 1.0.3
 - name: spicycode-rcov
   version: >= 0.8.1.5.0
 - name: twitter4r
