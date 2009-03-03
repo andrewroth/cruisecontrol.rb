@@ -25,5 +25,5 @@ gems:
 - name: twitter4r
   version: >= 0.3.0
 - name: xml-simple
-  version: >= 1.0.11
+  version: >= 1.0.12
 <%= include_config("#{File.expand_path(File.dirname(__FILE__))}/geminstaller_rails.yml") %>
