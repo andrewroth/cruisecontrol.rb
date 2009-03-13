@@ -21,7 +21,7 @@ gems:
 - name: rubyforge
   version: >= 1.0.3
 - name: spicycode-rcov
-  version: >= 0.8.1.5.0
+  version: >= 0.8.1.5.6
 - name: twitter4r
   version: >= 0.3.0
 - name: xml-simple
