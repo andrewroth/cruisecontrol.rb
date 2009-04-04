@@ -4,7 +4,7 @@ module CruiseControl
       MAJOR = 1
       MINOR = 3
       TINY  = 7
-      PATCH =  (/[0-9]+/.match("$Rev: 5945 $"))[0]    
+      PATCH =  (/[0-9]+/.match("$Rev: 5951 $"))[0]    
       STRING = [MAJOR, MINOR, TINY, PATCH].compact.join('.')
     end
   end
