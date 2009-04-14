@@ -5,16 +5,16 @@ task :cruise => ['geminstaller'] do
   #system "geminstaller"
   
   ENV['PATH'] = "#{ENV['PATH']}:#{File.join(Gem.user_dir, 'bin')}"
-
+  software = "CruiseControl.rb"
   puts
-  puts "[CruiseControl] Build environment:"
-  puts "[CruiseControl]   #{`cat /etc/issue`}"
-  puts "[CruiseControl]   #{`uname -a`}"
-  puts "[CruiseControl]   #{`ruby -v`}"
-  `gem env`.each_line {|line| print "[CruiseControl]   #{line}"}
-  puts "[CruiseControl]   Local gems:"
-  `gem list`.each_line {|line| print "[CruiseControl]     #{line}"}
-  puts    
+  puts "[#{software}] Build environment:"
+  puts "[#{software}]   #{`cat /etc/issue`}"
+  puts "[#{software}]   #{`uname -a`}"
+  puts "[#{software}]   #{`ruby -v`}"
+  `gem env`.each_line {|line| print "[#{software}]   #{line}"}
+  puts "[#{software}]   Local gems:"
+  `gem list`.each_line {|line| print "[#{software}]     #{line}"}
+  puts   
 
   out = ENV['CC_BUILD_ARTIFACTS']
   mkdir_p out unless File.directory? out if out
