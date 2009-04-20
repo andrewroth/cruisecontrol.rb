@@ -1,14 +1,16 @@
-set :application, "cruise"
-set :repository, "git@github.com:rubaidh/cruisecontrol.rb.git"
-
-role :web, "ardbeg.rubaidh.com"
-role :app, "ardbeg.rubaidh.com"
-role :db,  "ardbeg.rubaidh.com", :primary => true
-
-set :deploy_to, "/var/www/apps/cruise"
-set :user, "cruise"
-set :scm, :git
+set :application, "exhume"
+set :user, application
 set :use_sudo, false
+set :host, "ardbeg.rubaidh.com"
+
+set :scm, "git"
+set :repository, "git@github.com:rubaidh/#{application}.git"
+set :deploy_via, :remote_cache
+set :git_enable_submodules, true
+
+role :app, host
+role :web, host
+role :db,  host, :primary => true
 
 namespace :deploy do
   task :restart, :roles => :app, :except => { :no_release => true } do
