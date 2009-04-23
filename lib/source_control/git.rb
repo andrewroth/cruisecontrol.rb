@@ -29,6 +29,8 @@ module SourceControl
         git('checkout', ['-q', @branch]) # git prints 'Switched to branch "branch"' to stderr unless you pass -q 
       end
       git("reset", ['--hard', revision.number]) if revision
+
+      update_submodules
     end
 
     # TODO implement clean_checkout as "git clean -d" - much faster
@@ -48,6 +50,8 @@ module SourceControl
       else
         git("reset", ["--hard"])
       end
+
+      update_submodules
     end
 
     def up_to_date?(reasons = [])
@@ -94,6 +98,11 @@ module SourceControl
 
     def load_new_changesets_from_origin
       git("fetch", ["origin"])
+    end
+
+    def update_submodules
+      git('submodule', ['init'])
+      git('submodule', ['update'])
     end
 
     def git(operation, arguments = [], options = {}, &block)
