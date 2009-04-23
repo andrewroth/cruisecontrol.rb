@@ -1,16 +1,17 @@
-set :application, "exhume"
-set :user, application
+set :application, "cruisecontrol.rb"
+set :user, 'deploy'
 set :use_sudo, false
-set :host, "ardbeg.rubaidh.com"
+set :host, "pat.powertochange.org"
 
 set :scm, "git"
-set :repository, "git@github.com:rubaidh/#{application}.git"
+set :repository, "git://github.com/andrewroth/#{application}.git"
 set :deploy_via, :remote_cache
-set :git_enable_submodules, true
+set :deploy_to, "/var/www/cc.campusforchrist.org"
+set :git_enable_submodules, false
+set :git_shallow_clone, true
 
-role :app, host
-role :web, host
-role :db,  host, :primary => true
+server host, :app, :web, :db, :primary => true
+after "deploy", "deploy:cleanup"
 
 namespace :deploy do
   task :restart, :roles => :app, :except => { :no_release => true } do
