@@ -20,8 +20,7 @@ unless defined? CRUISE_DATA_ROOT
   if ENV['CRUISE_DATA_ROOT']
     CRUISE_DATA_ROOT = ENV['CRUISE_DATA_ROOT']
   else
-    #CRUISE_DATA_ROOT = File.join(find_home, ".cruise")
-    CRUISE_DATA_ROOT = "/srv/www/htdocs/ccrb/shared"
+    CRUISE_DATA_ROOT = File.join(find_home, ".cruise")
   end
   puts "cruise data root = '#{CRUISE_DATA_ROOT}'"
 end
