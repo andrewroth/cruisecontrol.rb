@@ -41,9 +41,8 @@ class BuildsController < ApplicationController
     path = File.join(@build.artifacts_directory, params[:path])
 
     if File.directory? path
-      # TODO: fic %2F urlencoding problem on Apache Server
       if File.exists?(path + '/index.html')
-        redirect_to :path => File.join(params[:path], 'index.html')
+        redirect_to "#{build_url}/coverage/index.html"
       else
         @rawpath = params[:path]
         @path = path
