@@ -42,13 +42,13 @@ class BuildsController < ApplicationController
 
     if File.directory? path
       # TODO: fic %2F urlencoding problem on Apache Server
-      #if File.exists?(path + '/index.html')
-      #  redirect_to :path => File.join(params[:path], 'index.html')
-      #else
+      if File.exists?(path + '/index.html')
+        redirect_to :path => File.join(params[:path], 'index.html')
+      else
         @rawpath = params[:path]
         @path = path
         render
-      #end
+      end
     elsif File.exists? path
       send_file(path, :type => get_mime_type(path), :disposition => 'inline', :stream => false)
     else

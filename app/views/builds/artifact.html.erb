@@ -68,7 +68,7 @@
       <%= link_to "Up to #{up_path}", up_path %>
     </p>
     <% urls.each do |f| %>
-    <p style='float: left; margin-left: 20px; margin-bottom: 20px;'>
+    <p style='margin-left: 20px; margin-bottom: 20px;'>
       <% if f.match(/\.(jpg|gif|png)$/) %>
       <%= link_to File.basename(f), f %><br />
       <%= link_to image_tag(File.dirname(f)+'/thumbnails/'+File.basename(f), :width=>200), f %>
