@@ -27,7 +27,7 @@ Project.configure do |project|
                                       "Library specs",
                                       "Unit tests", 
                                       "Functional tests", 
-						                          "Integration tests"]    
+                                      "Integration tests"]    
   project.statistician.code_filter = ["Libraries", 
                                       "Helpers",
                                       "Controllers",
