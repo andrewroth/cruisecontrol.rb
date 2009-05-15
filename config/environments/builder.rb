@@ -3,5 +3,5 @@ config.log_path = CRUISE_OPTIONS[:log_file_name] || 'log/builder_WITHOUT_A_NAME.
 config.log_level = CRUISE_OPTIONS[:verbose] ? :debug : :info
 
 config.after_initialize do
-  require CRUISE_DATA_ROOT + '/site_config' if File.exists?(CRUISE_DATA_ROOT + "/site_config.rb")
+  require RAILS_ROOT + '/config/site_config' if File.exists?(RAILS_ROOT + '/config/site_config.rb')
 end
