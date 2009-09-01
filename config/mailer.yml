@@ -1,3 +1,3 @@
 ---   
-  :address: smtp.powertochange.local
-  :domain: powertochange.local
+  :address: localhost
+  :domain: cc.ministryapp.com
