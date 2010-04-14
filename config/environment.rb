@@ -17,6 +17,7 @@ Rails::Initializer.run do |config|
   config.gem "xml-simple", :lib => "xmlsimple"
   config.gem "mocha"
   config.gem "rcov" if RUBY_VERSION != '1.8.7' && RUBY_VERSION !~ /^1.9/
+  config.gem "hpricot"
   
   def find_home
     looks_like_windows = (Config::CONFIG["target_os"] =~ /32/)

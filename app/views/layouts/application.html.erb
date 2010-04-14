@@ -5,6 +5,7 @@
   <title>CruiseControl.rb<%= @title ? " - " + @title : '' %></title>
   <%= stylesheet_link_tag 'cruisecontrol', :media => 'all' %>
   <%= stylesheet_link_tag 'site', :media => 'all' if File.exists?(RAILS_ROOT + "/public/stylesheets/site.css") %>
+  <%= stylesheet_link_tag 'coverage', :media => 'all' %>
   
 
   <% if @autorefresh %>
