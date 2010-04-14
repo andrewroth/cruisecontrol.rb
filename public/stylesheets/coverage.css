@@ -92,8 +92,8 @@
     border-collapse: collapse;
     border: 1px solid #666666;
     margin-bottom: 1em;
-    min-width: 800px;
-    max-width: 800px;
+    min-width: 700px;
+    max-width: 700px;
     float: right;
   }
   
@@ -124,7 +124,7 @@
   }
   
   table.report th.right_align, td.right_align {
-    text-align: right;
+    text-align: right !important;
     padding-right: 2em !important;
   }
   

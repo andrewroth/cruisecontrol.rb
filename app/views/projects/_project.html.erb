@@ -65,6 +65,9 @@
     <% if latest_build %>
       <% if File.exists?("#{latest_build.project.path}/work/coverage/index.html") %>
         <% doc = open("#{latest_build.project.path}/work/coverage/index.html") { |f| Hpricot(f) } %>
+        <% doc.search("table[@class='report'] tfoot tr td[text()*='TOTAL']").remove %>
+        <% doc.search("table[@class='report'] thead tr th[text()*='Name']").remove %>
+
         <TABLE class="report">
           <THEAD>
             <%= doc.at("table[@class='report'] thead").html %>

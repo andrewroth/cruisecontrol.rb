@@ -68,3 +68,5 @@ FileUtils.rm_rf RAILS_ROOT + "/public/builds"
 FileUtils.rm_rf RAILS_ROOT + "/public/documentation"
 
 BuilderPlugin.load_all
+
+Config::CONFIG["ruby_install_name"] = "ruby"
