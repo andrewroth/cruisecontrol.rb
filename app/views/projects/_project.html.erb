@@ -68,6 +68,7 @@
         <% doc.search("table[@class='report'] tfoot tr td[text()*='TOTAL']").remove %>
         <% doc.search("table[@class='report'] thead tr th[text()*='Name']").remove %>
 
+        <A HREF="<%= "/builds/#{latest_build.project.name}/#{latest_build.label}/coverage/index.html" %>">
         <TABLE class="report">
           <THEAD>
             <%= doc.at("table[@class='report'] thead").html %>
@@ -76,6 +77,7 @@
             <%= doc.at("table[@class='report'] tfoot").html %>
           </TFOOT>
         </TABLE>
+      </A>
       <% end %>
       <% if latest_build.incomplete? %>
         <div>
